@@ -135,13 +135,6 @@ def myParser(txt):
     if un_type == "temperature":
         des_out=temp_conv(final_num,input_u,output_u)
     if (input_u is output_u):
-        print("ERROR: You have entered incorrect units")
+        return "ERROR: You have entered incorrect units"
     else:
-        print(des_out,output_u)
-
-# ============================================================
-# Defining your own testing here
-# ============================================================
-
-user_txt="1 celcius to fahrenheit"
-myParser(user_txt)
+        return str(des_out,output_u)
