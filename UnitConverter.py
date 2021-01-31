@@ -32,7 +32,6 @@ def weight_conv(amt,inp_unit,out_unit):
     if inp_unit=="pounds":
         amt=amt/pounds
     if out_unit=="ounces":
-
         amt=amt*ounces
     if out_unit=="pounds":
         amt=amt*pounds
@@ -63,7 +62,7 @@ def find_units(request):
     unit_type=""
     for b in range(len(distance)):
         u=distance[b]
-        unit_type="distance"
+
         for x in u:
             if -1<request.find(x)<hold:
                 hold=request.find(x)
@@ -72,41 +71,38 @@ def find_units(request):
         for y in u:
             if request.find(y)>hold2:
                 hold2=request.find(y)
-                signal=1
+                unit_type="distance"
                 unit2=dist[b]
 
+    for b in range(len(weight)):
+        u=weight[b]
 
-    if signal==0:
-        for b in range(len(weight)):
-            u=weight[b]
-            unit_type="weight"
+        for x in u:
             for x in u:
-                for x in u:
-                    if -1<request.find(x)<hold:
-                        hold=request.find(x)
-                        unit1=wght[b]
+                if -1<request.find(x)<hold:
+                    hold=request.find(x)
+                    unit1=wght[b]
 
-                for y in u:
-                    if request.find(y)>hold2:
-                        hold2=request.find(y)
-                        signal=1
-                        unit2=wght[b]
+            for y in u:
+                if request.find(y)>hold2:
+                    hold2=request.find(y)
+                    unit_type="weight"
+                    unit2=wght[b]
 
-    if signal==0:
-        for b in range(len(temperature)):
-            u=temperature[b]
-            unit_type="temperature"
+    for b in range(len(temperature)):
+        u=temperature[b]
+
+        for x in u:
             for x in u:
-                for x in u:
-                    if -1<request.find(x)<hold:
-                        hold=request.find(x)
-                        unit1=temp[b]
+                if -1<request.find(x)<hold:
+                    hold=request.find(x)
+                    unit1=temp[b]
 
-                for y in u:
-                    if request.find(y)>hold2:
-                        hold2=request.find(y)
-                        signal=1
-                        unit2=temp[b]
+            for y in u:
+                if request.find(y)>hold2:
+                    hold2=request.find(y)
+                    unit_type="temperature"
+                    unit2=temp[b]
 
     return [unit1,unit2,unit_type]
 
@@ -116,7 +112,6 @@ def myParser(txt):
     input_u=units[0]
     output_u=units[1]
     un_type=units[2]
-
     myflag=0
     num1=0
     num2=0
@@ -137,5 +132,4 @@ def myParser(txt):
     if (input_u is output_u):
         return "ERROR: You have entered incorrect units"
     else:
-        return (str(round(des_out,3))+" "+output_u)
-
+        return (str(round(des_out,1))+" "+output_u)
