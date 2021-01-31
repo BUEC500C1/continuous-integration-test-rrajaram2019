@@ -1,5 +1,4 @@
 from UnitConverter import *
-import pytest
 
 def test_distance():
   assert myParser("1 foot to inches") == "12.0 inches"
