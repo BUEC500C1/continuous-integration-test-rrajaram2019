@@ -137,4 +137,5 @@ def myParser(txt):
     if (input_u is output_u):
         return "ERROR: You have entered incorrect units"
     else:
-        return str(des_out,output_u)
+        return (str(des_out)+" "+output_u)
+
